@@ -9,7 +9,7 @@ $(document).ready(function() {
     "autoWidth": false,
     "pageLength": 10,
     "ajax": {
-      "url": "http://bm.dvbrazil.com.br/list.php",
+      "url": "https://bm.dvbrazil.com.br/list.php",
       "type": "GET",
       "dataSrc": "",
     },
@@ -64,7 +64,7 @@ $(document).ready(function() {
     "autoWidth": false,
     "pageLength": 10,
     "ajax": {
-      "url": "http://bm.dvbrazil.com.br/subscription.php",
+      "url": "https://bm.dvbrazil.com.br/subscription.php",
       "type": "GET",
       "dataSrc": "",
     },
@@ -114,7 +114,7 @@ $(document).ready(function() {
       [0, "desc"]
     ],
     "ajax": {
-      "url": "http://bm.dvbrazil.com.br/heard.php",
+      "url": "https://bm.dvbrazil.com.br/heard.php",
       "type": "GET",
       "dataSrc": function(json) {
         json = json.filter(filterData);
