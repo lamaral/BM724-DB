@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  $('#list').DataTable({
+  var list = $('#list').DataTable({
     "paging": true,
     "lengthChange": true,
     "searching": true,
@@ -54,7 +54,7 @@ $(document).ready(function() {
       },
     ]
   });
-  $('#subscription').DataTable({
+  var subscription = $('#subscription').DataTable({
     "paging": true,
     "lengthChange": true,
     "searching": true,
@@ -101,7 +101,7 @@ $(document).ready(function() {
       },
     ]
   });
-  $('#lastheard').DataTable({
+  var lastheard = $('#lastheard').DataTable({
     "paging": true,
     "lengthChange": true,
     "searching": true,
@@ -192,4 +192,9 @@ $(document).ready(function() {
 
     ]
   });
+  setInterval( function () {
+    list.ajax.reload( null, false );
+    subscription.ajax.reload( null, false );
+    lastheard.ajax.reload( null, false );
+}, 5000 );
 });
