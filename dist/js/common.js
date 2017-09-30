@@ -76,12 +76,14 @@ function handleData(key, value) {
 
 function filterData(value) {
   // console.log(value[13]);
-  if (formatString(value[20]) != '' && formatString(value[10]) != '724999') {
+  // if (formatString(value[20]) != '' && formatString(value[10]) != '724999') {
+  //   return true;
+  // }
+  // if ((formatString(value[10]) == '724' || (value[10] >= 7240 && value[10] <= 7249) || (value[10] >= 724000 && value[10] <= 724999) || (value[10] >= 7240000 && value[10] <= 7249999)) && value[4] != 'LoopBack' && formatString(value[9]) != '724999' && formatString(value[10]) != '724999') {
+  //   return true;
+  // }
+  if ((formatString(value[20]) != '' && formatString(value[10]) !='724999') || ( (formatString(value[10]) == '724' || (value[10] >= 7240 && value[10]<=7249) ||  (value[10] >= 724000 && value[10]<=724999) || (value[10] >= 7240000 && value[10]<=7249999)) && value[4] !='LoopBack' && formatString(value[9]) !='724999' && formatString(value[10]) !='724999'))
     return true;
-  }
-  if ((formatString(value[10]) == '724' || (value[10] >= 7240 && value[10] <= 7249) || (value[10] >= 724000 && value[10] <= 724999) || (value[10] >= 7240000 && value[10] <= 7249999)) && value[4] != 'LoopBack' && formatString(value[9]) != '724999' && formatString(value[10]) != '724999') {
-    return true;
-  }
 
   return false;
 }
