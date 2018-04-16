@@ -138,7 +138,8 @@ $(document).ready(function() {
         "data": 7
       },
       {
-        "data": 8
+        "data": 8,
+        "defaultContent": "N/A"
       },
       {
         "data": 9
