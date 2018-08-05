@@ -7,6 +7,7 @@ $(document).ready(function() {
     "info": false,
     "responsive": true,
     "autoWidth": false,
+    "scrollX": true,
     "pageLength": 10,
     "ajax": {
       "url": "https://bm.dvbrazil.com.br/list.php",
@@ -62,6 +63,7 @@ $(document).ready(function() {
     "info": false,
     "responsive": true,
     "autoWidth": false,
+    "scrollX": true,
     "pageLength": 10,
     "ajax": {
       "url": "https://bm.dvbrazil.com.br/subscription.php",
@@ -93,12 +95,6 @@ $(document).ready(function() {
           return types[data];
         }
       },
-      {
-        "data": "values",
-        render: function(data, type, row) {
-          return interpretData(row['name'], row['type'], row['values']);
-        }
-      },
     ]
   });
   var lastheard = $('#lastheard').DataTable({
@@ -109,6 +105,7 @@ $(document).ready(function() {
     "info": false,
     "responsive": true,
     "autoWidth": false,
+    "scrollX": true,
     "pageLength": 10,
     "order": [
       [0, "desc"]

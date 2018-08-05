@@ -1,9 +1,6 @@
 <?php
-header("Access-Control-Allow-Origin: *");
+//header("Access-Control-Allow-Origin: *");
 require_once("../status/common.php");
-
-$connection = new DBus(DBus::BUS_SYSTEM, true);
-$proxy = $connection->createProxy(SERVICE_NAME, OBJECT_PATH, INTERFACE_NAME);
 
 $array = array();
 
@@ -18,7 +15,10 @@ $filters = array(
     "Simple External Application",
     "Parrot"
 );
-  
+
+$connection = new DBus(DBus::BUS_SYSTEM, true);
+$proxy      = $connection->createProxy(SERVICE_NAME, OBJECT_PATH, INTERFACE_NAME);
+
 foreach ($filters as $filter) {
     $result = $proxy->getContextList($filter);
     if ((is_object($result)) && (get_class($result) == "DbusArray")) {
@@ -34,22 +34,24 @@ foreach ($filters as $filter) {
                 $parameters["name"]    = $set[1];
                 $parameters["type"]    = $set[2];
                 $parameters["number"]  = $set[3];
+                $parameters["values"]  = $values;
                 $parameters["caption"] = $set[7];
             }
 
             $result = $proxy->getSubscriptionList($banner);
             if ((is_object($result)) && (get_class($result) == "DbusArray")) {
                 $list = $result->getData();
-                foreach ($list as $entry) {
-                    $set = $entry->getData();
-                    $parameters["slot"]        = $set[0];
-                    $parameters["flavor"]      = $set[1];
-                    $parameters["destination"] = $set[2];
-                    $parameters["tag"]         = $set[3];
+                for ($index = 0; $index < count($list); $index += 4) {
+                    $parameters["slot"]        = $list[$index + 0];
+                    $parameters["flavor"]      = $list[$index + 1];
+                    $parameters["destination"] = $list[$index + 2];
+                    $parameters["tag"]         = $list[$index + 3];
 
                     $array[] = $parameters;
                 }
             }
+
+
         }
     }
 }
@@ -63,4 +65,5 @@ if (array_key_exists("callback", $_GET)) {
     header("Content-Type: application/json");
     print($data);
 }
+
 ?>
