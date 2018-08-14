@@ -139,12 +139,15 @@ $(document).ready(function() {
         "defaultContent": "N/A"
       },
       {
-        "data": 9
+        "data": 9,
+				render: function(data, type, row) {
+          return (((data == 724) || (data >= 7240 && data <= 7249) || (data >= 724900 && data <= 724999) || (data >= 7240000 && data <= 7249999) || data == 915 || data == 8) ? ('<td><div class="btn btn-info btn-xs">' + formatString(data) + '</div></td>') : ((data <= 999) ? ('<td><div class="btn btn-danger btn-xs">' + formatString(data) + '</div></td>') : ('<td><div class="btn btn-primary btn-xs">' + formatString(data) + '</div></td>')));
+        }
       },
       {
         "data": 10,
         render: function(data, type, row) {
-          return (((data == 724) || (data >= 7240 && data <= 7249) || (data >= 724000 && data <= 724999) || (data >= 7240000 && data <= 7249999) || data == 915 || data == 8) ? ('<td><div class="btn btn-info btn-xs">' + formatString(data) + '</div></td>') : ((data <= 999) ? ('<td><div class="btn btn-danger btn-xs">' + formatString(data) + '</div></td>') : ('<td><div class="btn btn-warning btn-xs">' + formatString(data) + '</div></td>')));
+          return (((data == 724) || (data >= 7240 && data <= 7249) || (data >= 724900 && data <= 724999) || (data >= 7240000 && data <= 7249999) || data == 915 || data == 8) ? ('<td><div class="btn btn-info btn-xs">' + formatString(data) + '</div></td>') : ((data <= 999) ? ('<td><div class="btn btn-danger btn-xs">' + formatString(data) + '</div></td>') : ('<td><div class="btn btn-primary btn-xs">' + formatString(data) + '</div></td>')));
         }
       },
       {
