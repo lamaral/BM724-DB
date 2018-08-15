@@ -106,7 +106,6 @@ function BRGuard.handleCallSession(kind, name, number, slot, flavor, source, des
     report('[BRGuard] User ' .. source .. ' banned for calling ' .. destination)
   end
 
-
   -- Accept all calls by default
   return REGISTRY_CONTINUE_APPENDING
 
