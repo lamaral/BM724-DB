@@ -128,7 +128,17 @@ $(document).ready(function() {
       {
         "data": 6,
         render: function(data, type, row) {
-          return (((data <= 999999) || (data == 0)) ? (((data == 0) || (data <= 724000 && data >= 724999) || data < 9999) ? ('<td><div class="btn btn-warning btn-xs">' + formatString(data) + '</div></td>') : ('<td><div class="btn btn-success btn-xs">' + formatString(data) + '</div></td>')) : ('<td><div class="btn btn-primary btn-xs">' + formatString(data) + '</div></td>'));
+					// Renderiza tipos de links
+					if ((data >= 724000) && (data <= 724900)) {
+						return '<td><div class="btn btn-success btn-xs">' + data + '</div></td>';
+					}
+					if (((data >= 7240000) && (data <= 7249999)) || ((data >= 724000000) && (data <= 724999999)) ) {
+						return '<td><div class="btn btn-primary btn-xs">' + data + '</div></td>';
+					}
+					if (((data >= 724900) && (data <= 724999)) || (data <= 10)) {
+						return '<td><div class="btn btn-danger btn-xs">' + data + '</div></td>';
+					}
+					return '<td><div class="btn btn-warning btn-xs">' + data + '</div></td>';
         }
       },
       {
@@ -141,13 +151,41 @@ $(document).ready(function() {
       {
         "data": 9,
 				render: function(data, type, row) {
-          return (((data == 724) || (data >= 7240 && data <= 7249) || (data >= 724900 && data <= 724999) || (data >= 7240000 && data <= 7249999) || data == 915 || data == 8) ? ('<td><div class="btn btn-info btn-xs">' + formatString(data) + '</div></td>') : ((data <= 999) ? ('<td><div class="btn btn-danger btn-xs">' + formatString(data) + '</div></td>') : ('<td><div class="btn btn-primary btn-xs">' + formatString(data) + '</div></td>')));
+					if ((data >= 724900) && (data <= 724999)) {
+						return '<td><div class="btn btn-warning btn-xs">' + data + '</div></td>';
+					}
+					if ((data >= 7240000) && (data <= 7249999)) {
+						return '<td><div class="btn btn-success btn-xs">' + data + '</div></td>';
+					}
+					if (data.indexOf("722") == 0) {
+						return '<td><div class="btn btn-info btn-xs">' + data + '</div></td>';
+					}
+          return '<td><div class="btn btn-danger btn-xs">' + data + '</div></td>';
         }
       },
       {
         "data": 10,
         render: function(data, type, row) {
-          return (((data == 724) || (data >= 7240 && data <= 7249) || (data >= 724900 && data <= 724999) || (data >= 7240000 && data <= 7249999) || data == 915 || data == 8) ? ('<td><div class="btn btn-info btn-xs">' + formatString(data) + '</div></td>') : ((data <= 999) ? ('<td><div class="btn btn-danger btn-xs">' + formatString(data) + '</div></td>') : ('<td><div class="btn btn-primary btn-xs">' + formatString(data) + '</div></td>')));
+					// Renderiza destinos
+					if ((data >= 1) && (data <= 10)) {
+						return '<td><div class="btn btn-primary btn-xs">' + data + '</div></td>';
+					}
+          if (((data >= 7240) && (data <= 7249)) || ((data >= 72400) && (data <= 72499)) || (data == 724)) {
+						return '<td><div class="btn btn-success btn-xs">' + data + '</div></td>';
+					}
+					if ((data >= 724900) && (data <= 724979)) {
+						return '<td><div class="btn btn-warning btn-xs">' + data + '</div></td>';
+					}
+					if ((data >= 724980) && (data <= 724999)) {
+						return '<td><div class="btn btn-danger btn-xs">' + data + '</div></td>';
+					}
+					if ((data >= 7240000) && (data <= 7249999)) {
+						return '<td><div class="btn btn-primary btn-xs">' + data + '</div></td>';
+					}
+					if (data.indexOf("722") == 0) {
+						return '<td><div class="btn btn-info btn-xs">' + data + '</div></td>';
+					}
+					return '<td><div class="btn btn-danger btn-xs">' + data + '</div></td>';
         }
       },
       {

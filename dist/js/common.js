@@ -28,6 +28,13 @@ function formatLossRate(loss, total) {
   return '';
 }
 
+function formatRSSI(value) {
+	if ((value == null) ||
+    (value == undefined))
+    return 'N/A';
+	return String(Math.round(value))+' dBm';
+}
+
 function formatString(value) {
   if ((value == null) ||
     (value == undefined))
@@ -62,7 +69,7 @@ function handleData(key, value) {
   value[12] = formatString(value[12]); // Route
   value[13] = getCallState(value[13]); // State
   value[14] = formatInterval(value[14] * 0.06); // Duration
-  value[15] = formatString(value[15]); // RSSI
+  value[15] = formatRSSI(value[15]); // RSSI
   value[16] = formatString(value[16]); // BER
   value[17] = formatLossRate(value[17], value[18]); // Loss Rate
   value[19] = formatString(value[19]); // Reflector ID
