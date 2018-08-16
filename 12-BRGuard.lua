@@ -16,6 +16,7 @@ local BRGuard = { }
 
 --[[
 Repeaters where reflectors need to be blocked.
+Not in use. 
 ]]--
 local blockReflectorList = {
   [206102] = true, -- ON0DEN
@@ -34,8 +35,7 @@ local blockReflectorList = {
 --[[
 Talkgroups that are allowed on slot 1. The repeaters where this list is applied can be found below.
 ]]--
-local regionalTgList = {
-  [9]      = true, -- Local & Reflector
+local slot1TgList = {
   [724]    = true, -- Belgium
   [4000]   = true, -- Disconnect
   [5000]   = true, -- Info
@@ -49,6 +49,7 @@ local regionalTgList = {
 --[[
 List of talkgroups that are used in Belgium
 Some repeater sysops don't want external groups
+Not in use
 ]]--
 local internalTgList = {
   [2]      = true, -- Local
@@ -83,21 +84,44 @@ Main Plug-in logic
 
 
 function BRGuard.handleCallSession(kind, name, number, slot, flavor, source, destination)
-	report('[BRGuard] Kind: ' .. kind .. ' - Name: ' .. name .. ' - Number: ' .. number .. ' - Slot: ' .. slot .. ' - Flavor: ' .. flavor .. ' - Source: ' .. source .. ' - Destination:' .. destination)
-	if (bit.band(kind, LINK_TYPE_REPEATER) ~= 0) and
-		(destination == 100) then
-		setStoredValue('BlockedUsers', 0, source, 3, 30)
-		report('[BRGuard] User ' .. source .. 'banned for calling 100')
-	end
-		
---  -- Drop any reflector call on a specific list of repeaters
---  if (destination > 4000) and
---  (destination < 5000) and
---  (blockReflectorList[number] == true)
---  then
---    report('[BRGuard] Prevented user ' .. source .. ' from using reflector ' .. destination .. ' on repeater ' .. number .. ' slot ' .. slot .. '.')
---    return REGISTRY_STOP_APPENDING
---  end
+  if (bit.band(kind, LINK_TYPE_REPEATER) ~= 0) or
+    (kind == LINK_TYPE_APPLICATION)
+  then
+    report('[BRGuard] Kind: ' .. kind .. ' - Name: ' .. name .. ' - Number: ' .. number .. ' - Slot: ' .. slot .. ' - Flavor: ' .. flavor .. ' - Source: ' .. source .. ' - Destination:' .. destination)
+  end
+    
+  -- Do not mess up with FastForward calls
+  if (bit.band(kind, LINK_TYPE_NETWORK) ~= 0) then
+    return REGISTRY_CONTINUE_APPENDING
+  end
+    
+  -- Drop any reflector call from Brazilian IDs not coming from DV4Mini
+  if (destination > 4000) and
+    (destination < 5000) and
+    (source >= 7240000) and
+    (source <= 7249999) and
+    (name ~= 'DV4mini')
+  then
+    report('[BRGuard] Prevented user ' .. source .. ' from using reflector ' .. destination .. ' on gateway ' .. number .. ' slot ' .. slot .. '.')
+    return REGISTRY_STOP_APPENDING
+  end
+	
+	-- Restrict TGs on slot 1 of all repeaters
+  if (slot1TgList[destination] == nil) and
+    (number >= 724000) and
+    (number <= 724999) and
+    (slot == 1)
+  then
+    report('[BRGuard] Prevented user ' .. source .. ' from using TG ' .. destination .. ' on repeater ' .. number .. ' slot ' .. slot .. '.')
+    return REGISTRY_STOP_APPENDING
+  end
+
+--  -- Test: Ban any user who call 100
+--	if (bit.band(kind, LINK_TYPE_REPEATER) ~= 0) and
+--		(destination == 100) then
+--		setStoredValue('BlockedUsers', 0, source, 3, 30)
+--		report('[BRGuard] User ' .. source .. 'banned for calling 100')
+--	end
 --
 --  -- Drop non-regional TGs on slot 1 of ON1DGR his repeaters
 --  if (regionalTgList[destination] == nil) and

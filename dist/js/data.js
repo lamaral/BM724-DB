@@ -167,17 +167,17 @@ $(document).ready(function() {
         "data": 10,
         render: function(data, type, row) {
 					// Renderiza destinos
-					if ((data >= 1) && (data <= 10)) {
+					if ((data >= 1) && (data <= 8)) {
 						return '<td><div class="btn btn-primary btn-xs">' + data + '</div></td>';
 					}
-          if (((data >= 7240) && (data <= 7249)) || ((data >= 72400) && (data <= 72499)) || (data == 724)) {
+                    if (((data >= 7240) && (data <= 7249)) || ((data >= 72400) && (data <= 72499)) || (data == 724)) {
 						return '<td><div class="btn btn-success btn-xs">' + data + '</div></td>';
 					}
 					if ((data >= 724900) && (data <= 724979)) {
 						return '<td><div class="btn btn-warning btn-xs">' + data + '</div></td>';
 					}
 					if ((data >= 724980) && (data <= 724999)) {
-						return '<td><div class="btn btn-danger btn-xs">' + data + '</div></td>';
+						return '<td><div class="btn btn-primary btn-xs">' + data + '</div></td>';
 					}
 					if ((data >= 7240000) && (data <= 7249999)) {
 						return '<td><div class="btn btn-primary btn-xs">' + data + '</div></td>';
