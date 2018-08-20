@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>BrandMeister BR Repeater Map | DVBrazil</title>
+		<!-- Tell the browser to be responsive to screen width -->
+		<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+		<!-- Bootstrap 3.3.6 -->
+		<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+		<!-- Ionicons -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+		<!-- DataTables -->
+		<link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css">
+		<!-- Theme style -->
+		<link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+		<!-- AdminLTE Skins. Choose a skin from the css/skins
+					 folder instead of downloading all of them to reduce the load. -->
+		<link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
+		<link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.3/dist/leaflet.css" integrity="sha512-Rksm5RenBEKSKFjgI3a41vrjkw4EVPlJ3+OiI65vTjIdo9brlAacEuKOiQ5OFh7cOI1bkDwLqdLw3Zg0cRJAAQ==" crossorigin=""/>
+		<script src="https://unpkg.com/leaflet@1.3.3/dist/leaflet.js" integrity="sha512-tAGcCfR4Sc5ZP5ZoVz0quoZDYX5aCtEm/eu1KhSLj2c9eFrylXZknQYmxUssFaVJKvvc0dJQixhGjG2yXWiV9Q==" crossorigin=""></script>
+		<style>
+			#mapid { height: 620px; }
+		</style>
+	</head>
+	<body class="hold-transition skin-blue layout-top-nav">
+  <div class="wrapper">
+    <header class="main-header">
+                <nav class="navbar navbar-static-top">
+                    <div class="container">
+                        <div class="navbar-header">
+                            <a href="https://bm.dvbrazil.com.br" class="navbar-brand"><b>DVBrazil</b></a>
+                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
+                            <i class="fa fa-bars"></i>
+                            </button>
+                        </div>
+                        <!-- Collect the nav links, forms, and other content for toggling -->
+                        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
+                            <ul class="nav navbar-nav">
+                                <li><a href="index.html">BM-7242 Dashboard</a></li>
+                                <li><a href="lh.html">BM-7242 Last Heard</a></li>
+																<li class="active"><a href="map.html">BM-7242 RPT Map</a></li>
+                                <li><a href="link.html">BM-7242 DV4Mini Routing</a></li>
+                                <li><a href="http://xlx.dvbrazil.com.br">XLX-724 Dashboard</a></li>
+                            </ul>
+                        </div>
+                        <!-- /.navbar-collapse -->
+                    </div>
+                    <!-- /.container-fluid -->
+                </nav>
+            </header>
+    <!-- Full Width Column -->
+    <div class="content-wrapper">
+      <div class="container-fluid">
+        <!-- Content Header (Page header) -->
+        <!-- <section class="content-header">
+                <h1>
+                    Top Navigation
+                    <small>Example 2.0</small>
+                </h1>
+                <ol class="breadcrumb">
+                    <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
+                    <li><a href="#">Layout</a></li>
+                    <li class="active">Top Navigation</li>
+                </ol>
+            </section> -->
+
+        <!-- Main content -->
+        <section class="content">
+		<div id="mapid"></div>
+					</section>
+        <!-- /.content -->
+      </div>
+      <!-- /.container -->
+    </div>
+    <!-- /.content-wrapper -->
+    <footer class="main-footer">
+      <div class="container">
+        <div class="pull-right hidden-xs">
+          <b>Version</b> 1.0.0
+        </div>
+        <strong>Copyright &copy; 2018 <a href="http://www.dvbrazil.com.br/">DVBrazil Team</a>.</strong> All rights reserved.
+      </div>
+      <!-- /.container -->
+    </footer>
+  </div>
+  <!-- ./wrapper -->
+
+  <!-- jQuery 2.2.3 -->
+  <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
+  <!-- Bootstrap 3.3.6 -->
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+  <!-- DataTables -->
+  <script src="plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
+  <!-- SlimScroll -->
+  <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
+  <!-- FastClick -->
+  <script src="plugins/fastclick/fastclick.js"></script>
+  <!-- AdminLTE App -->
+  <script src="dist/js/app.min.js?v=20170925"></script>
+  <script src="dist/js/common.js?v=20170925"></script>
+  <script src="dist/js/data.js?v=20170925"></script>
+  <script src="https://bm.dvbrazil.com.br/status/common.js?v=20170925"></script>
+		<script type="application/javascript">
+			var mymap = L.map('mapid').setView([-12.839671, -50.401721], 5);
+			L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+    attribution: 'Repeater data: DVBrazil Team & BrandMeister | Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox.streets',
+    accessToken: 'pk.eyJ1IjoibGFtYXJhbCIsImEiOiJjamwxMGJoeDUxYW5jM3BvNnZ3dXZ5cDFvIn0.-UGQeZHNPy0EW5eL1ivuWw'
+}).addTo(mymap);
+		</script>
+</body>
+</html>
