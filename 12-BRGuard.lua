@@ -28,6 +28,13 @@ local blockedSlot2TgList = {
   [724]    = true,
 }
 
+--[[
+Talkgroups that gets users banned.
+]]--
+local banTgList = {
+  [1807]    = true,
+}
+
 
 --[[
 Main Plug-in logic
@@ -55,30 +62,30 @@ function BRGuard.handleCallSession(kind, name, number, slot, flavor, source, des
     report('[BRGuard] Prevented user ' .. source .. ' from using reflector ' .. destination .. ' on gateway ' .. number .. ' slot ' .. slot .. '. REFTS3')
     return REGISTRY_STOP_APPENDING
   end
-	
-	-- Drop any private calls from Brazilian IDs in slot 1
-	if (destination > 7240000) and
+  
+  -- Drop any private calls from Brazilian IDs in slot 1
+  if (destination > 7240000) and
     (destination < 7249999) and
     (number >= 724000) and
     (number <= 724999) and
-		(flavor == 5) and
+    (flavor == 5) and
     (slot == 1)
   then
-		report('[BRGuard] Prevented user ' .. source .. ' from making a private call to user ' .. destination .. ' on repeater ' .. number .. ' slot ' .. slot .. '. PRIVTS1')
+    report('[BRGuard] Prevented user ' .. source .. ' from making a private call to user ' .. destination .. ' on repeater ' .. number .. ' slot ' .. slot .. '. PRIVTS1')
     return REGISTRY_STOP_APPENDING
-	end
-	
-	-- Drop any calls from Brazilian IDs to repeater TGs  in slot 1 (724000- 724900)
-	if (destination > 724000) and
+  end
+  
+  -- Drop any calls from Brazilian IDs to repeater TGs  in slot 1 (724000- 724900)
+  if (destination > 724000) and
     (destination < 724900) and
     (number >= 724000) and
     (number <= 724999) and
     (slot == 1)
   then
-		report('[BRGuard] Prevented user ' .. source .. ' from making a call to ' .. destination .. ' on repeater ' .. number .. ' slot ' .. slot .. '. RPTTGS1')
+    report('[BRGuard] Prevented user ' .. source .. ' from making a call to ' .. destination .. ' on repeater ' .. number .. ' slot ' .. slot .. '. RPTTGS1')
     return REGISTRY_STOP_APPENDING
-	end
-	
+  end
+  
 
   
   -- Restrict TGs on slot 2 of all repeaters
@@ -91,12 +98,13 @@ function BRGuard.handleCallSession(kind, name, number, slot, flavor, source, des
     return REGISTRY_STOP_APPENDING
   end
 
---  -- Test: Ban any user who call 100
---	if (bit.band(kind, LINK_TYPE_REPEATER) ~= 0) and
---		(destination == 100) then
---		setStoredValue('BlockedUsers', 0, source, 3, 30)
---		report('[BRGuard] User ' .. source .. 'banned for calling 100')
---	end
+  -- Ban any user who calls the prohibited TGs
+  if (banTgList[destination] == true) and
+      (bit.band(kind, LINK_TYPE_REPEATER) ~= 0) 
+    then
+    setStoredValue('BlockedUsers', 0, source, 3, 3600)
+    report('[BRGuard] User ' .. source .. ' banned for calling ' .. destination)
+  end
 
 
   -- Accept all calls by default
