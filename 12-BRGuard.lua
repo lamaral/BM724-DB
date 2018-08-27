@@ -33,6 +33,7 @@ Talkgroups that gets users banned.
 ]]--
 local banTgList = {
   [1807]    = true,
+  [5057]    = true
 }
 
 

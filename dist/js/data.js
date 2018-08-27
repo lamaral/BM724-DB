@@ -130,15 +130,15 @@ $(document).ready(function() {
         render: function(data, type, row) {
 					// Renderiza tipos de links
 					if ((data >= 724000) && (data <= 724900)) {
-						return '<td><div class="btn btn-success btn-xs">' + data + '</div></td>';
+						return '<td><div class="btn btn-success btn-sm">' + data + '</div></td>';
 					}
 					if (((data >= 7240000) && (data <= 7249999)) || ((data >= 724000000) && (data <= 724999999)) ) {
-						return '<td><div class="btn btn-primary btn-xs">' + data + '</div></td>';
+						return '<td><div class="btn btn-primary btn-sm">' + data + '</div></td>';
 					}
 					if (((data >= 724900) && (data <= 724999)) || (data <= 10)) {
-						return '<td><div class="btn btn-danger btn-xs">' + data + '</div></td>';
+						return '<td><div class="btn btn-danger btn-sm">' + data + '</div></td>';
 					}
-					return '<td><div class="btn btn-warning btn-xs">' + data + '</div></td>';
+					return '<td><div class="btn btn-warning btn-sm">' + data + '</div></td>';
         }
       },
       {
@@ -152,15 +152,15 @@ $(document).ready(function() {
         "data": 9,
 				render: function(data, type, row) {
 					if ((data >= 724900) && (data <= 724999)) {
-						return '<td><div class="btn btn-warning btn-xs">' + data + '</div></td>';
+						return '<td><div class="btn btn-warning btn-sm">' + data + '</div></td>';
 					}
 					if ((data >= 7240000) && (data <= 7249999)) {
-						return '<td><div class="btn btn-success btn-xs">' + data + '</div></td>';
+						return '<td><div class="btn btn-success btn-sm">' + data + '</div></td>';
 					}
 					if (data.indexOf("722") == 0) {
-						return '<td><div class="btn btn-info btn-xs">' + data + '</div></td>';
+						return '<td><div class="btn btn-info btn-sm">' + data + '</div></td>';
 					}
-          return '<td><div class="btn btn-danger btn-xs">' + data + '</div></td>';
+          return '<td><div class="btn btn-danger btn-sm">' + data + '</div></td>';
         }
       },
       {
@@ -168,30 +168,30 @@ $(document).ready(function() {
         render: function(data, type, row) {
 					// Renderiza destinos
 					if ((data >= 1) && (data <= 8)) {
-						return '<td><div class="btn btn-primary btn-xs">' + data + '</div></td>';
+						return '<td><div class="btn btn-primary btn-sm">' + data + '</div></td>';
 					}
                     if (((data >= 7240) && (data <= 7249)) || ((data >= 72400) && (data <= 72499)) || (data == 724)) {
-						return '<td><div class="btn btn-success btn-xs">' + data + '</div></td>';
+						return '<td><div class="btn btn-success btn-sm">' + data + '</div></td>';
 					}
 					if ((data >= 724900) && (data <= 724979)) {
-						return '<td><div class="btn btn-warning btn-xs">' + data + '</div></td>';
+						return '<td><div class="btn btn-warning btn-sm">' + data + '</div></td>';
 					}
 					if ((data >= 724980) && (data <= 724999)) {
-						return '<td><div class="btn btn-primary btn-xs">' + data + '</div></td>';
+						return '<td><div class="btn btn-primary btn-sm">' + data + '</div></td>';
 					}
 					if ((data >= 7240000) && (data <= 7249999)) {
-						return '<td><div class="btn btn-primary btn-xs">' + data + '</div></td>';
+						return '<td><div class="btn btn-primary btn-sm">' + data + '</div></td>';
 					}
 					if (data.indexOf("722") == 0) {
-						return '<td><div class="btn btn-info btn-xs">' + data + '</div></td>';
+						return '<td><div class="btn btn-info btn-sm">' + data + '</div></td>';
 					}
-					return '<td><div class="btn btn-danger btn-xs">' + data + '</div></td>';
+					return '<td><div class="btn btn-danger btn-sm">' + data + '</div></td>';
         }
       },
       {
         "data": 13,
         render: function(data, type, row) {
-          return ((data != 'In Progress') ? ((data == 'Lost') ? ('<td><div class="btn btn-danger btn-xs">' + data + '</div></td>') : ('<td><div class="btn btn-success btn-xs">' + data + '</div></td>')) : ('<td><div class="btn btn-warning btn-xs">' + data + '</div></td>'));
+          return ((data != 'In Progress') ? ((data == 'Lost') ? ('<td><div class="btn btn-danger btn-sm">' + data + '</div></td>') : ('<td><div class="btn btn-success btn-sm">' + data + '</div></td>')) : ('<td><div class="btn btn-warning btn-sm">' + data + '</div></td>'));
         }
       },
       {
@@ -206,7 +206,7 @@ $(document).ready(function() {
       {
         "data": 20,
         render: function(data, type, row) {
-          return ((formatString(data).substring(0, 3) != 'XRF') ? ((formatString(data) == '' ? '<td>' + formatString(data) + '</td>' : '<td><div class="btn btn-success btn-xs">' + formatString(data) + '</div></td>')) : ('<td><div class="btn btn-primary btn-xs">' + formatString(data) + '</div></td>'));
+          return ((formatString(data).substring(0, 3) != 'XRF') ? ((formatString(data) == '' ? '<td>' + formatString(data) + '</td>' : '<td><div class="btn btn-success btn-sm">' + formatString(data) + '</div></td>')) : ('<td><div class="btn btn-primary btn-sm">' + formatString(data) + '</div></td>'));
         }
       },
       {
@@ -221,7 +221,7 @@ $(document).ready(function() {
       // {
       //   "data": 24,
       //   render: function(data, type, row) {
-      //     return (row[10] == '724942' || row[10] == '724945') ? ('<td><div class="btn btn-primary btn-xs">' + ' XLX724 ' + '</div></td>') : ('<td>ss' + formatString(data) + '</td>');
+      //     return (row[10] == '724942' || row[10] == '724945') ? ('<td><div class="btn btn-primary btn-sm">' + ' XLX724 ' + '</div></td>') : ('<td>ss' + formatString(data) + '</td>');
       //   }
       // },
       {

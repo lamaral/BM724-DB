@@ -1,152 +1,92 @@
+
+
 <!DOCTYPE html>
 <html>
-   <head>
-      <meta charset="utf-8">
-      <meta http-equiv="X-UA-Compatible" content="IE=edge">
-      <title>BrandMeister BR Dashboard | DVBrazil</title>
-      <!-- Tell the browser to be responsive to screen width -->
-      <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-      <!-- Bootstrap 3.3.6 -->
-      <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-      <!-- Font Awesome -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-      <!-- Ionicons -->
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-      <!-- DataTables -->
-      <link rel="stylesheet" href="plugins/datatables/dataTables.bootstrap.css">
-      <!-- Theme style -->
-      <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
-      <!-- AdminLTE Skins. Choose a skin from the css/skins
-         folder instead of downloading all of them to reduce the load. -->
-      <link rel="stylesheet" href="dist/css/skins/_all-skins.min.css">
-      <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-      <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-      <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-      <![endif]-->
-   </head>
-   <!-- ADD THE CLASS layout-top-nav TO REMOVE THE SIDEBAR. -->
-   <body class="hold-transition skin-blue layout-top-nav">
-      <div class="wrapper">
-         <header class="main-header">
-                <nav class="navbar navbar-static-top">
-                    <div class="container">
-                        <div class="navbar-header">
-                            <a href="https://bm.dvbrazil.com.br" class="navbar-brand"><b>DVBrazil</b></a>
-                            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse">
-                            <i class="fa fa-bars"></i>
-                            </button>
-                        </div>
-                        <!-- Collect the nav links, forms, and other content for toggling -->
-                        <div class="collapse navbar-collapse pull-left" id="navbar-collapse">
-                            <ul class="nav navbar-nav">
-                                <li><a href="index.html">BM-7242 Dashboard</a></li>
-                                <li class="active"><a href="lh.html">BM-7242 Last Heard</a></li>
-																<li><a href="map.html">BM-7242 RPT Map</a></li>
-                                <li><a href="link.html">BM-7242 DV4Mini Routing</a></li>
-                                <li><a href="http://xlx.dvbrazil.com.br">XLX-724 Dashboard</a></li>
-                            </ul>
-                        </div>
-                        <!-- /.navbar-collapse -->
-                    </div>
-                    <!-- /.container-fluid -->
-                </nav>
-            </header>
-         <!-- Full Width Column -->
-         <div class="content-wrapper">
-            <div class="container-fluid">
-               <!-- Content Header (Page header) -->
-               <!-- <section class="content-header">
-                  <h1>
-                      Top Navigation
-                      <small>Example 2.0</small>
-                  </h1>
-                  <ol class="breadcrumb">
-                      <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-                      <li><a href="#">Layout</a></li>
-                      <li class="active">Top Navigation</li>
-                  </ol>
-                  </section> -->
-               <!-- Main content -->
-               <section class="content">
-                  <div class="box">
-                     <div class="box-header">
-                        <h3 class="box-title">BM 7242 Last Heard</h3>
-                     </div>
-                     <!-- /.box-header -->
-                     <div class="box-body">
-                        <table id="lastheard" class="table table-bordered table-striped">
-                           <thead>
-                              <tr>
-                                 <!--            <th>Node ID</th> -->
-                                 <th>Date</th>
-                                 <th>Link Name</th>
-                                 <th>Link ID</th>
-                                 <th>Slot</th>
-                                 <th>Call Type</th>
-                                 <th>Source ID</th>
-                                 <th>Destination ID</th>
-                                 <!--            <th>Priority</th> -->
-                                 <!--            <th>Route</th> -->
-                                 <th>State</th>
-                                 <th>Duration</th>
-                                 <th>RSSI</th>
-                                 <!--            <th>BER</th> -->
-                                 <th>Loss Rate</th>
-                                 <!--            <th>Reflector ID</th> -->
-                                 <th>Repeater Call</th>
-                                 <th>Source Call</th>
-                                 <th>Source Name</th>
-                                 <!-- <th>Destination Call</th>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>BrandMeister BR Dashboard | DVBrazil</title>
+        <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css"/>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.18/css/dataTables.bootstrap4.min.css"/>
+        <link rel="stylesheet" type="text/css" href="dist/css/style.css">
+    </head>
+    <body>
+        <header>
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+                <a href="https://bm.dvbrazil.com.br" class="navbar-brand"><b>DVBrazil</b></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse pull-left" id="navbarCollapse">
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item"><a class="nav-link" href="index.html">BM-7242 Dashboard</a></li>
+                        <li class="nav-item active"><a class="nav-link" href="lh.html">BM-7242 Last Heard</a></li>
+                        <li class="nav-item"><a class="nav-link" href="map.html">BM-7242 RPT Map</a></li>
+                        <li class="nav-item"><a class="nav-link" href="link.html">BM-7242 DV4Mini Routing</a></li>
+                        <li class="nav-item"><a class="nav-link" href="http://xlx.dvbrazil.com.br">XLX-724 Dashboard</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <main role="main" class="container-fluid">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="box-title">BM 7242 Last Heard</h3>
+                </div>
+                <!-- /.box-header -->
+                <div class="card-body">
+                    <table id="lastheard" class="table table-bordered table-striped table-sm">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Session ID</th>
+                                <th>Date</th>
+                                <th>Link Name</th>
+                                <th>Link ID</th>
+                                <th>Slot</th>
+                                <th>Call Type</th>
+                                <th>Source ID</th>
+                                <th>Destination ID</th>
+                                <!--            <th>Priority</th> -->
+                                <!--            <th>Route</th> -->
+                                <th>State</th>
+                                <th>Duration</th>
+                                <th>RSSI</th>
+                                <!--            <th>BER</th> -->
+                                <th>Loss Rate</th>
+                                <!--            <th>Reflector ID</th> -->
+                                <th>Repeater Call</th>
+                                <th>Source Call</th>
+                                <th>Source Name</th>
+                                <!-- <th>Destination Call</th>
                                     <th>Destination Name</th> -->
-                                 <th>Talker Alias</th>
-                              </tr>
-                           </thead>
-                           <tbody>
-                           </tbody>
-                        </table>
-                     </div>
-                     <!-- /.box-body -->
-                  </div>
-                  <!-- /.box -->
-               </section>
-               <!-- /.content -->
+                                <th>Talker Alias</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- /.box-body -->
             </div>
-            <!-- /.container -->
-         </div>
-         <!-- /.content-wrapper -->
-         <footer class="main-footer">
+            <!-- /.box -->
+        </main>
+        <footer class="footer">
             <div class="container">
-               <div class="pull-right hidden-xs">
-                  <b>Version</b> 1.0.0
-               </div>
-               <strong>Copyright &copy; 2018 <a href="http://www.dvbrazil.com.br/">DVBrazil Team</a>.</strong> All
-               rights
-               reserved.
+                <strong>Copyright &copy; 2018 <a href="http://www.dvbrazil.com.br/">DVBrazil Team</a>.</strong> All
+                rights
+                reserved.
             </div>
-            <!-- /.container -->
-         </footer>
-      </div>
-      <!-- ./wrapper -->
-      <!-- jQuery 2.2.3 -->
-      <script src="plugins/jQuery/jquery-2.2.3.min.js"></script>
-      <!-- Bootstrap 3.3.6 -->
-      <script src="bootstrap/js/bootstrap.min.js"></script>
-      <!-- DataTables -->
-      <script src="plugins/datatables/jquery.dataTables.min.js"></script>
-      <script src="plugins/datatables/dataTables.bootstrap.min.js"></script>
-       <script src="//cdn.datatables.net/plug-ins/1.10.19/features/pageResize/dataTables.pageResize.min.js"></script>
-      <!-- SlimScroll -->
-      <script src="plugins/slimScroll/jquery.slimscroll.min.js"></script>
-      <!-- FastClick -->
-      <script src="plugins/fastclick/fastclick.js"></script>
-      <!-- AdminLTE App -->
-      <script src="dist/js/app.min.js"></script>
-      <!-- BM7242 App -->
-      <script src="dist/js/date.format.js"></script>
-      <script src="dist/js/common.js"></script>
-      <script src="dist/js/data.js"></script>
-      <script src="https://bm.dvbrazil.com.br/status/common.js"></script>
-   </body>
+        </footer>
+        <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
+        <!-- BM7242 App -->
+        <script src="dist/js/date.format.js"></script>
+        <script src="dist/js/common.js"></script>
+        <script src="dist/js/heard.js"></script>
+        <script src="https://bm.dvbrazil.com.br/status/common.js"></script>
+    </body>
 </html>
+

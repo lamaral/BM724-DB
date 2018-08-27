@@ -1,11 +1,12 @@
 import time
 import paho.mqtt.client as paho
+import msgpack
 
 broker="bm.dvbrazil.com.br"
 
-def on_message(client, userdata, message):
-    time.sleep(1)
-    print("received message = ",str(message.payload.decode("utf-16le")))
+def on_message(client, userdata, msg):
+    print(msg.topic+" "+str(msgpack.unpackb(msg.payload)))
+#    print(msg.topic+" "+str(msg.payload))
 
 client= paho.Client("mqtt-test")
 
@@ -13,12 +14,7 @@ client.on_message=on_message
 
 print("connecting to broker ",broker)
 client.connect(broker)#connect
-client.loop_start() #start loop to process received messages
 print("subscribing ")
-client.subscribe("Master/7242/+/Message/#")#subscribe
-time.sleep(2)
-print("publishing ")
-client.publish("Master/7242/Outgoing/Message/724990/7240021","Test".encode("utf-16le"))#publish
-time.sleep(4)
-client.disconnect() #disconnect
-client.loop_stop() #stop loop
+client.subscribe("BRHeard/#")#subscribe
+#client.subscribe("Registry/LastHeard/+/7242/+/7240022/7")
+client.loop_forever() #stop loop
