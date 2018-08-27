@@ -20,7 +20,7 @@ $(document).ready(function() {
         dataTablesEntry.push(lastraw['Session']);           // Session ID
         dataTablesEntry.push(formatLHDate(lastraw));     //1
         dataTablesEntry.push(lastraw['LinkName']);         //2
-        dataTablesEntry.push(lastraw['LinkID']); //3
+        dataTablesEntry.push(formatLHLinkID(lastraw)); //3
         dataTablesEntry.push(lastraw['LinkSlot']);   //4
         dataTablesEntry.push(lastraw['CallType']);    //5
         dataTablesEntry.push(lastraw['SourceID']);     //6
@@ -48,6 +48,7 @@ $(document).ready(function() {
                 lhTable.row.add(dataTablesEntry).draw();
             }
         }
+        lhTable.columns.adjust().draw();
     };
     
     var lastheard = $('#lastheard').DataTable({
@@ -79,9 +80,24 @@ function formatLHDate(lastraw) {
     return datetime;
 }
 
+function formatLHLinkID(lastraw) {
+    var data = lastraw['LinkID'];
+    if ((data >= 724000) && (data <= 724900)) {
+        return '<td><div class="btn btn-success btn-xs">' + data + '</div></td>';
+    }
+    if (((data >= 7240000) && (data <= 7249999)) || ((data >= 724000000) && (data <= 724999999)) ) {
+        return '<td><div class="btn btn-primary btn-xs">' + data + '</div></td>';
+    }
+    if (((data >= 724900) && (data <= 724999)) || (data <= 10)) {
+        return '<td><div class="btn btn-danger btn-xs">' + data + '</div></td>';
+    }
+    return '<td><div class="btn btn-warning btn-xs">' + data + '</div></td>';
+}
+
 function filterData(value) {
   if ((formatString(value['SourceCall']) != '' && formatString(value['DestinationID']) !='724999') || ( (formatString(value['DestinationID']) == '724' || (value['DestinationID'] >= 7240 && value['DestinationID']<=7249) ||  (value['DestinationID'] >= 724000 && value['DestinationID']<=724999) || (value['DestinationID'] >= 7240000 && value['DestinationID']<=7249999)) && value['LinkName'] !='LoopBack' && formatString(value['SourceID']) !='724999' && formatString(value['DestinationID']) !='724999'))
     return true;
 
   return false;
 }
+
