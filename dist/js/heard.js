@@ -1,6 +1,6 @@
 $(document).ready(function() {
     // Create WS connection
-    var connection = new WebSocket('ws://127.0.0.1:8000/lh');
+    var connection = new WebSocket('wss://web.luiz.eng.br/lh/');
 
     // Log errors on the WS
     connection.onerror = function (error) {
