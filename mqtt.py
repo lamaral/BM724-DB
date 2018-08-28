@@ -15,6 +15,7 @@ client.on_message=on_message
 print("connecting to broker ",broker)
 client.connect(broker)#connect
 print("subscribing ")
+client.subscribe("Registry/LastHeard/#")#subscribe
 client.subscribe("BRHeard/#")#subscribe
-#client.subscribe("Registry/LastHeard/+/7242/+/7240022/7")
+#client.subscribe("Registry/LastHeard/+/7242/+/7240021/7")
 client.loop_forever() #stop loop

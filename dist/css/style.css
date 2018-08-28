@@ -1,3 +1,4 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic);
 /* Sticky footer styles
 -------------------------------------------------- */
 html {
@@ -7,6 +8,9 @@ html {
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px;
+  font-family: 'Source Sans Pro','Helvetica Neue',Helvetica,Arial,sans-serif;
+  font-weight: 400;
+  font-size: 14px;
 }
 .footer {
   position: absolute;
@@ -24,7 +28,7 @@ body {
 /* Not required for template or sticky footer method. */
 
 body > .container-fluid {
-  padding: 80px 15px 0;
+  padding: 70px 15px 0;
 }
 
 .footer > .container {
@@ -36,9 +40,11 @@ code {
   font-size: 80%;
 }
 
-.btn-xs {
-    padding  : .5rem .5rem;
-    font-size  : .95rem;
-    line-height  : .5;
-    border-radius : .2rem;
+.btn-xs,
+.btn-group-xs > .btn {
+  padding: 1px 5px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-radius: 3px;
 }
+

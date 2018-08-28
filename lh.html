@@ -20,7 +20,7 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item"><a class="nav-link" href="index.html">BM-7242 Dashboard</a></li>
                         <li class="nav-item active"><a class="nav-link" href="lh.html">BM-7242 Last Heard</a></li>
-                        <li class="nav-item"><a class="nav-link" href="map.html">BM-7242 RPT Map</a></li>
+<!--                        <li class="nav-item"><a class="nav-link" href="map.html">BM-7242 RPT Map</a></li>-->
                         <li class="nav-item"><a class="nav-link" href="link.html">BM-7242 DV4Mini Routing</a></li>
                         <li class="nav-item"><a class="nav-link" href="http://xlx.dvbrazil.com.br">XLX-724 Dashboard</a></li>
                     </ul>
@@ -28,47 +28,36 @@
             </nav>
         </header>
         <main role="main" class="container-fluid">
-<!--
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="box-title">BM 7242 Last Heard</h3>
-                </div>
-                <div class="card-body">
--->
-                    <table id="lastheard" class="table table-bordered table-striped table-sm" style="width: 100%">
-                        <thead class="thead-light">
-                            <tr>
-                                <th>Session ID</th>
-                                <th>Date</th>
-                                <th>Link Name</th>
-                                <th>Link ID</th>
-                                <th>Slot</th>
-                                <th>Call Type</th>
-                                <th>Source ID</th>
-                                <th>Destination ID</th>
-                                <!--            <th>Priority</th> -->
-                                <!--            <th>Route</th> -->
-                                <th>State</th>
-                                <th>Duration</th>
-                                <th>RSSI</th>
-                                <!--            <th>BER</th> -->
-                                <th>Loss Rate</th>
-                                <!--            <th>Reflector ID</th> -->
-                                <th>Repeater Call</th>
-                                <th>Source Call</th>
-                                <th>Source Name</th>
-                                <!-- <th>Destination Call</th>
-                                    <th>Destination Name</th> -->
-                                <th>Talker Alias</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        </tbody>
-                    </table>
-<!--
-                </div>
-            </div>
--->
+            <table id="lastheard" class="table table-bordered table-striped table-sm" style="width: 100%">
+                <thead class="thead-light">
+                    <tr>
+                        <th>Session ID</th>
+                        <th>Date</th>
+                        <th>Link Name</th>
+                        <th>Link ID</th>
+                        <th>Repeater Call</th>
+                        <th>Slot</th>
+                        <th>Call Type</th>
+                        <th>Source ID</th>
+                        <th>Destination ID</th>
+                        <!-- <th>Priority</th> -->
+                        <!-- <th>Route</th> -->
+                        <th>State</th>
+                        <th>Duration</th>
+                        <!-- <th>RSSI</th> -->
+                        <!-- <th>BER</th> -->
+                        <th>Loss Rate</th>
+                        <!-- <th>Reflector ID</th> -->
+                        <th>Source Call</th>
+                        <th>Source Name</th>
+                        <!-- <th>Destination Call</th> -->
+                        <th>Destination Name</th>
+                        <!-- <th>Talker Alias</th> -->
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
         </main>
         <footer class="footer">
             <div class="container">
@@ -83,9 +72,7 @@
         <script type="text/javascript" src="https://cdn.datatables.net/1.10.18/js/dataTables.bootstrap4.min.js"></script>
         <!-- BM7242 App -->
         <script src="dist/js/date.format.js"></script>
-        <script src="dist/js/common.js"></script>
         <script src="dist/js/heard.js"></script>
-        <script src="https://bm.dvbrazil.com.br/status/common.js"></script>
     </body>
 </html>
 
